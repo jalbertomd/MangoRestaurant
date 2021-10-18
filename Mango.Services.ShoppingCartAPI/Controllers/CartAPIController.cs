@@ -21,12 +21,12 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
         //private readonly IRabbitMQCartMessageSender _rabbitMQCartMessageSender;
 
         public CartAPIController(ICartRepository cartRepository, 
-            IMessageBus messageBus/*,
-            ICouponRepository couponRepository, 
+            IMessageBus messageBus,
+            ICouponRepository couponRepository/*, 
             IRabbitMQCartMessageSender rabbitMQCartMessageSender*/)
         {
             _cartRepository = cartRepository;
-            //_couponRepository = couponRepository;
+            _couponRepository = couponRepository;
             //_rabbitMQCartMessageSender = rabbitMQCartMessageSender;
             _messageBus = messageBus;
             this._response = new ResponseDto();
@@ -156,7 +156,8 @@ namespace Mango.Services.ShoppingCartAPI.Controllers
 
                 checkoutHeader.CartDetails = cartDto.CartDetails;
                 //logic to add message to process order.
-                await _messageBus.PublishMessage(checkoutHeader, "checkoutmessagetopic");
+                //await _messageBus.PublishMessage(checkoutHeader, "checkoutmessagetopic");
+                await _messageBus.PublishMessage(checkoutHeader, "checkoutqueue");
 
                 ////rabbitMQ
                 //_rabbitMQCartMessageSender.SendMessage(checkoutHeader, "checkoutqueue");

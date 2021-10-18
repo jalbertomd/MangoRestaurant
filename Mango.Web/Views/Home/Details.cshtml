@@ -1,7 +1,11 @@
 ﻿@model Mango.Web.Models.Dto.ProductDto
 
+@{
+    ViewData["Title"] = "Products";
+}
+
 <form method="post">
-    <input asp-for="ProductId" hidden/>
+    <input asp-for="ProductId" hidden />
     <div class=" pt-4">
         <div class="card container" style="border:1px solid #808080;">
             <div class="card-header bg-dark text-light row" style="border-radius: 0px;">
@@ -50,6 +54,6 @@
     </div>
 </form>
 
-@section Scripts{ 
-    <partial name="_ValidationScriptsPartial"/>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
 }
